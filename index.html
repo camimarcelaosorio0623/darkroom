@@ -10,7 +10,7 @@
 <meta property="og:image" content="assets/hero.jpg">
 <meta name="theme-color" content="#070505">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500;600&family=Inter+Tight:wght@300;400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500;1,600&family=IBM+Plex+Mono:wght@400;500;600&family=Inter+Tight:wght@300;400;600;800&display=swap" rel="stylesheet">
 <style>
   /* ===== Tokens de marca (concepto: cuarto oscuro de revelado) ===== */
   :root{
@@ -130,6 +130,35 @@
   .gate{position:fixed;inset:0;z-index:600;display:grid;place-items:center;padding:22px;background:rgba(7,5,5,.94);backdrop-filter:blur(14px)}
   .gate-box{max-width:420px;text-align:center;padding:40px 30px;border:1px solid var(--line);background:var(--panel);box-shadow:0 0 80px rgba(255,43,43,.25)}
   .wa{position:fixed;right:18px;bottom:18px;z-index:150;width:60px;height:60px;border-radius:50%;background:var(--roja);display:grid;place-items:center;box-shadow:0 0 30px rgba(255,43,43,.6);transition:.25s}.wa:hover{transform:scale(1.08)}.wa svg{width:28px;height:28px;fill:#fff}
+
+  /* ===== v1.1 · Terciopelo rojo ===== */
+  :root{--f-ser:'Cormorant Garamond',serif;--rojo-g:linear-gradient(100deg,#7a0d0d 0%,#ff2b2b 30%,#ff8a7a 50%,#ff2b2b 70%,#7a0d0d 100%);--dorado:#d9b26a}
+  .h2 em,.mani .big em{font-family:var(--f-ser);font-style:italic;font-weight:600;text-transform:none;letter-spacing:0;background:var(--rojo-g);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:none;animation:brillo 6s ease-in-out infinite;padding-right:.08em}
+  @keyframes brillo{0%,100%{background-position:0 0}50%{background-position:100% 0}}
+  .hero p{font-family:var(--f-ser);font-size:clamp(1.25rem,2vw,1.55rem);font-style:italic;line-height:1.35}
+  .hero p b{font-style:normal;font-family:var(--f-body);font-size:.8em;letter-spacing:.04em}
+  .hero .t span:first-child{background:linear-gradient(180deg,#fff 0%,#f1ece4 55%,#d9b9b4 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .velo{position:absolute;inset:0;z-index:-1;pointer-events:none;mix-blend-mode:screen}
+  .velo::before,.velo::after{content:"";position:absolute;width:60vmax;height:60vmax;border-radius:50%;filter:blur(70px);opacity:.55}
+  .velo::before{left:-20vmax;top:-20vmax;background:radial-gradient(circle,rgba(255,60,40,.55),transparent 60%);animation:fuga1 14s ease-in-out infinite alternate}
+  .velo::after{right:-25vmax;bottom:-30vmax;background:radial-gradient(circle,rgba(255,150,90,.35),transparent 60%);animation:fuga2 18s ease-in-out infinite alternate}
+  @keyframes fuga1{to{transform:translate(20vmax,10vmax)}}@keyframes fuga2{to{transform:translate(-15vmax,-12vmax)}}
+  .polvo{position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+  .polvo i{position:absolute;bottom:-10px;border-radius:50%;background:#ff6a5a;box-shadow:0 0 10px 2px rgba(255,60,40,.8);opacity:0;animation:flota linear infinite}
+  @keyframes flota{0%{transform:translate(0,0);opacity:0}15%{opacity:.9}100%{transform:translate(var(--dx),-100vh);opacity:0}}
+  .btn{border-radius:999px}
+  .btn-roja{background:linear-gradient(120deg,#c21414,#ff2b2b 50%,#c21414)!important;background-size:200% 100%!important;box-shadow:0 0 0 1px rgba(255,255,255,.12) inset,0 12px 36px rgba(255,43,43,.4)!important}.btn-roja:hover{background-position:100% 0!important}
+  .regla,.info,.trago{border-color:rgba(217,178,106,.18)!important;background:linear-gradient(160deg,rgba(255,255,255,.04),rgba(255,255,255,0)),var(--panel)!important}
+  .regla .n,.info small{color:var(--dorado)!important}
+  .regla b,.info b{font-family:var(--f-ser);font-size:1.35rem;font-weight:700}
+  .trago b{font-family:var(--f-ser)!important;font-style:italic;font-weight:700;font-size:1.7rem!important}
+  summary{font-family:var(--f-ser)!important;font-style:italic;font-weight:600;font-size:1.6rem!important}
+  form.hoja{border-radius:4px;background:linear-gradient(#f4efe7,#ebe3d6)!important}
+  .gate-box{border-color:rgba(217,178,106,.35)!important;border-radius:6px}
+  .gate-box .logo{font-size:3.4rem!important}
+  .kicker::before{background:var(--roja)}
+  .film .frame{border-radius:2px}
+  .cierre .h2{font-size:clamp(3.4rem,10vw,8rem)}
 </style>
 </head>
 <body>
@@ -145,6 +174,7 @@
 <section class="hero" id="top">
   <img src="assets/hero.jpg" alt="Gente bailando bajo luz roja" fetchpriority="high">
   <div class="safelight"></div>
+  <div class="velo" aria-hidden="true"></div><div class="polvo" id="polvo" aria-hidden="true"></div>
   <div class="exif reveal">ISO <b>3200</b> · f/1.4 · 1/30<br>AV. JUÁREZ · PUEBLA<br>LUZ DE SEGURIDAD <b>●</b> ENCENDIDA</div>
   <div class="wrap">
     <span class="kicker">Av. Juárez · La Paz, Puebla</span>
@@ -278,6 +308,8 @@ $('#wa').href=wa('Hola Dark Room 🔴 Tengo una pregunta');
 /* Revelado al entrar en pantalla */
 (function(){const d=[...document.querySelectorAll('.dev')];if(!('IntersectionObserver' in window)){d.forEach(x=>x.classList.add('on'));return;}
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('on'),300);io.unobserve(e.target);}}),{threshold:.45});d.forEach(x=>io.observe(x));})();
+/* Partículas rojas en el hero */
+(function(){if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;const c=$('#polvo');for(let i=0;i<24;i++){const e=document.createElement('i');const z=2+Math.random()*3;e.style.width=e.style.height=z+'px';e.style.left=Math.random()*100+'%';e.style.setProperty('--dx',(Math.random()*140-70)+'px');e.style.animationDuration=(8+Math.random()*10)+'s';e.style.animationDelay=(-Math.random()*14)+'s';c.appendChild(e);}})();
 addEventListener('scroll',()=>$('#hdr').classList.toggle('solid',scrollY>30),{passive:true});
 (function(){const els=[...document.querySelectorAll('.reveal')];if(!('IntersectionObserver' in window)){els.forEach(e=>e.classList.add('in'));return;}
   document.querySelectorAll('.frames,.reglas,.tragos,.aside').forEach(g=>[...g.children].forEach((c,i)=>c.style.transitionDelay=(i*.1)+'s'));
