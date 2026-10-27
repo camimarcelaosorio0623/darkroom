@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dark Room · Puebla — Lo que pasa aquí, se revela aquí</title>
-<meta name="description" content="Dark Room, Puebla. Noches bajo luz roja: DJs, barra y mesas para tu grupo. Aparta por WhatsApp.">
+<title>Dark Room · Puebla — Live show · VIP secret night · Male to male</title>
+<meta name="description" content="Dark Room, Av. Juárez, La Paz, Puebla. Live show, VIP secret night, male to male. Open door 10 PM. Promos toda la noche. Aparta por WhatsApp.">
 <meta property="og:title" content="Dark Room · Puebla">
 <meta property="og:description" content="Lo que pasa aquí, se revela aquí. Aparta tu mesa por WhatsApp.">
 <meta property="og:image" content="assets/hero.jpg">
@@ -69,7 +69,7 @@
   .film::before{top:4px}.film::after{bottom:4px}
   .frames{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:0 10px}
   .frame{position:relative;aspect-ratio:3/2;overflow:hidden;background:#111;cursor:pointer}
-  .frame img{width:100%;height:100%;object-fit:cover;filter:invert(1) hue-rotate(180deg) grayscale(.4) contrast(.9);transition:filter 1.4s var(--ease),transform 1s var(--ease)}
+  .frame img{width:100%;height:100%;object-fit:cover;filter:invert(1) hue-rotate(180deg) grayscale(.4) contrast(.9) brightness(.45);transition:filter 1.4s var(--ease),transform 1s var(--ease)}
   .frame:hover img,.frame.dev-on img{filter:none;transform:scale(1.04)}
   .frame .lbl{position:absolute;left:0;right:0;bottom:0;padding:16px 16px 14px;background:linear-gradient(transparent,rgba(0,0,0,.85))}
   .frame .lbl small{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.16em;color:var(--ambar);text-transform:uppercase}
@@ -127,11 +127,14 @@
   .cierre .wrap{position:relative}.cierre .h2{font-size:clamp(3.4rem,10vw,8rem)}
   footer{border-top:1px solid var(--line);padding:46px 22px 90px;text-align:center;color:var(--mut);font-size:.9rem}
   footer .logo{font-size:2.4rem;margin-bottom:8px}footer .r{display:flex;justify-content:center;gap:22px;flex-wrap:wrap;margin:14px 0;font-family:var(--f-mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase}footer a:hover{color:var(--roja)}
+  .gate{position:fixed;inset:0;z-index:600;display:grid;place-items:center;padding:22px;background:rgba(7,5,5,.94);backdrop-filter:blur(14px)}
+  .gate-box{max-width:420px;text-align:center;padding:40px 30px;border:1px solid var(--line);background:var(--panel);box-shadow:0 0 80px rgba(255,43,43,.25)}
   .wa{position:fixed;right:18px;bottom:18px;z-index:150;width:60px;height:60px;border-radius:50%;background:var(--roja);display:grid;place-items:center;box-shadow:0 0 30px rgba(255,43,43,.6);transition:.25s}.wa:hover{transform:scale(1.08)}.wa svg{width:28px;height:28px;fill:#fff}
 </style>
 </head>
 <body>
-<div class="flag">Propuesta de diseño v1 · Agentia Labs · datos por confirmar</div>
+<div class="flag">Propuesta de diseño v1 · Agentia Labs</div>
+<div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gate-t"><div class="gate-box"><div class="logo" style="font-size:3rem">DARK <b>ROOM</b></div><p id="gate-t" class="mono" style="margin:18px 0 6px;letter-spacing:.14em;text-transform:uppercase;font-size:.8rem;color:var(--roja)">Contenido para mayores de 18</p><p style="color:var(--mut)">Shows en vivo para adultos. ¿Eres mayor de edad?</p><div style="display:flex;gap:10px;justify-content:center;margin-top:24px;flex-wrap:wrap"><button class="btn btn-roja" id="gate-si" type="button">Sí, tengo 18+</button><a class="btn btn-linea" href="https://www.google.com">Salir</a></div></div></div>
 
 <header id="hdr"><nav>
   <a href="#top" class="logo">DARK <b>ROOM</b></a>
@@ -142,14 +145,14 @@
 <section class="hero" id="top">
   <img src="assets/hero.jpg" alt="Gente bailando bajo luz roja" fetchpriority="high">
   <div class="safelight"></div>
-  <div class="exif reveal">ISO <b>3200</b> · f/1.4 · 1/30<br>PUEBLA, MX<br>LUZ DE SEGURIDAD <b>●</b> ENCENDIDA</div>
+  <div class="exif reveal">ISO <b>3200</b> · f/1.4 · 1/30<br>AV. JUÁREZ · PUEBLA<br>LUZ DE SEGURIDAD <b>●</b> ENCENDIDA</div>
   <div class="wrap">
-    <span class="kicker">Puebla · Bar &amp; club</span>
+    <span class="kicker">Av. Juárez · La Paz, Puebla</span>
     <h1 class="t reveal"><span>Dark</span><span>Room</span></h1>
     <div class="row">
       <div>
-        <p>Apaga la luz, sube el volumen. <b>Lo que pasa aquí, se revela aquí.</b></p>
-        <div class="estado"><span class="pc">horario por confirmar</span></div>
+        <p>Live show · VIP secret night · <b>Male to male.</b> Entre más oscuro, más rico. Lo que pasa aquí, se revela aquí.</p>
+        <div class="estado" id="estado">Open door 10:00 PM · Cover $100</div>
       </div>
       <div class="btns"><a href="#reserva" class="btn btn-roja"><svg viewBox="0 0 32 32"><use href="#ico-wa"/></svg>Apartar mesa</a><a href="#agenda" class="btn btn-linea">Ver la agenda</a></div>
     </div>
@@ -159,15 +162,15 @@
 <!-- AGENDA como tira de película -->
 <section class="film" id="agenda">
   <div class="frames" id="frames"></div>
-  <div class="film-cap"><span>DR-400 · Agenda de la semana</span><span>Pasa el cursor o toca para revelar ▸</span><span class="pc">noches de ejemplo · confirmar con Dark Room</span></div>
+  <div class="film-cap"><span>DR-400 · Agenda de la semana</span><span>Pasa el cursor o toca para revelar ▸</span><span>Open door 10 PM · Cover $100</span></div>
 </section>
 
 <section class="sec"><div class="wrap mani">
-  <div class="reveal"><span class="kicker">El cuarto oscuro</span><p class="big" style="margin-top:14px">Aquí no hay flash. <em>Hay ambiente.</em> Luz roja, buena música y la gente correcta.</p></div>
+  <div class="reveal"><span class="kicker">El cuarto oscuro</span><p class="big" style="margin-top:14px">Aquí no hay flash. <em>Hay show.</em> Luz roja, shows en vivo y la gente correcta.</p></div>
   <div class="reglas">
-    <div class="regla reveal"><span class="n">R/01</span><div><b>Sin poses</b><span>Ven a pasarla bien, no a la foto perfecta.</span></div></div>
+    <div class="regla reveal"><span class="n">R/01</span><div><b>Lo que pasa aquí, aquí se queda</b><span>Sin fotos de otros asistentes sin su permiso. Tu noche es tuya.</span></div></div>
     <div class="regla reveal"><span class="n">R/02</span><div><b>Respeto ante todo</b><span>Cero tolerancia al acoso. El staff está para cuidarte.</span></div></div>
-    <div class="regla reveal"><span class="n">R/03</span><div><b>Mayores de 18</b><span>Con identificación oficial, siempre.</span></div></div>
+    <div class="regla reveal"><span class="n">R/03</span><div><b>Solo mayores de 18</b><span>Con identificación oficial, siempre. Shows para adultos.</span></div></div>
   </div>
 </div></section>
 
@@ -188,11 +191,11 @@
 <section class="sec barra" id="barra">
   <img src="assets/barra.jpg" alt="" loading="lazy">
   <div class="wrap">
-    <div class="reveal"><span class="kicker">La barra</span><h2 class="h2">Tragos que se <em>revelan</em></h2><p class="lead">Carta por confirmar con Dark Room. Así se vería.</p></div>
+    <div class="reveal"><span class="kicker">Promociones toda la noche</span><h2 class="h2">La barra <em>al rojo</em></h2><p class="lead">Las promos que ya publica Dark Room en su Instagram.</p></div>
     <div class="tragos">
-      <div class="trago reveal"><div class="ph"><img src="assets/c1.jpg" alt="Whisky" loading="lazy"></div><div class="b"><b>Negativo</b><span>whisky · naranja · ahumado</span></div></div>
-      <div class="trago reveal"><div class="ph"><img src="assets/c2.jpg" alt="Martini" loading="lazy"></div><div class="b"><b>Luz roja</b><span>vodka · frutos rojos</span></div></div>
-      <div class="trago reveal"><div class="ph"><img src="assets/c3.jpg" alt="Cóctel" loading="lazy"></div><div class="b"><b>Revelado</b><span>mezcal · toronja · romero</span></div></div>
+      <div class="trago reveal"><div class="ph"><img src="assets/c1.jpg" alt="Whisky" loading="lazy"></div><div class="b"><b>Carta al 50%</b><span>Toda la carta a mitad de precio hasta la 1 AM</span></div></div>
+      <div class="trago reveal"><div class="ph"><img src="assets/c2.jpg" alt="Martini" loading="lazy"></div><div class="b"><b>10 cervezas $700</b><span>Cervezas medias · todas las noches</span></div></div>
+      <div class="trago reveal"><div class="ph"><img src="assets/c3.jpg" alt="Cóctel" loading="lazy"></div><div class="b"><b>Cubeta del jueves</b><span>6 cervezas $350 · incluye ticket gratis</span></div></div>
     </div>
   </div>
 </section>
@@ -210,10 +213,10 @@
       <p class="fine">Sin pagos en la web. Confirmamos por WhatsApp.</p>
     </form>
     <div class="aside">
-      <div class="info reveal"><small>Ubicación</small><b>Puebla, Pue.</b><span>Dirección exacta <span class="pc">por confirmar</span></span></div>
-      <div class="info reveal"><small>Horario</small><b>Jueves a sábado</b><span>Desde las 10 PM <span class="pc">por confirmar</span></span></div>
+      <div class="info reveal"><small>Ubicación</small><b>Av. Juárez, La Paz</b><span>Puebla, Pue. · número exterior <span class="pc">por confirmar</span></span></div>
+      <div class="info reveal"><small>Horario</small><b>Open door 10:00 PM</b><span>Cover $100 · días de apertura <span class="pc">por confirmar</span></span></div>
       <div class="info reveal"><small>Instagram</small><b><a href="https://www.instagram.com/dark_room_puebla/" target="_blank" rel="noopener">@dark_room_puebla</a></b><span>Flyers y fotos de cada noche.</span></div>
-      <div class="info reveal"><small>Acceso</small><b>+18 con identificación</b><span>Dress code: lo oscuro siempre funciona.</span></div>
+      <div class="info reveal"><small>Más información</small><b><a href="tel:+522222156443">222 215 6443</a></b><span>+18 con identificación oficial.</span></div>
     </div>
   </div>
 </div></section>
@@ -221,7 +224,7 @@
 <section class="sec" style="padding-top:20px"><div class="wrap">
   <div class="reveal" style="text-align:center"><span class="kicker">Antes de venir</span><h2 class="h2">Preguntas</h2></div>
   <div class="faq reveal">
-    <details><summary>¿Cobran cover?</summary><p>Depende de la noche. Cada flyer trae el precio. <span class="pc">por confirmar</span></p></details>
+    <details><summary>¿Cobran cover?</summary><p>El cover es de $100 y las puertas abren a las 10 PM. En noches especiales el flyer trae el precio.</p></details>
     <details><summary>¿Puedo festejar mi cumpleaños?</summary><p>Sí. Elige «Cumpleaños» al apartar y te preparamos la mesa.</p></details>
     <details><summary>¿Cuál es la edad mínima?</summary><p>18 años con identificación oficial.</p></details>
     <details><summary>¿Cómo aparto mesa?</summary><p>Llena la hoja de arriba o escríbenos por WhatsApp.</p></details>
@@ -232,7 +235,7 @@
 
 <footer>
   <div class="logo">DARK <b>ROOM</b></div>
-  <p>Puebla, México · +18 · Consumo responsable</p>
+  <p>Av. Juárez, La Paz, Puebla · Open door 10 PM · Solo +18 · Consumo responsable</p>
   <div class="r"><a href="#agenda">Agenda</a><a href="#reserva">Reserva</a><a href="https://www.instagram.com/dark_room_puebla/" target="_blank" rel="noopener">Instagram</a></div>
   <p style="font-size:.76rem;opacity:.7">Propuesta de diseño · Agentia Labs · Fotos de muestra (Unsplash)</p>
 </footer>
@@ -243,9 +246,9 @@
 <script>
 /* ===== Datos (TODO por confirmar con Dark Room) ===== */
 const DR={
-  wa:'520000000000',          // ⚠️ falta el WhatsApp real
-  noches:[{dow:4,nombre:'Jueves Negativo',genero:'Indie · Electro',img:'ev1.jpg'},{dow:5,nombre:'Viernes Rojo',genero:'Reggaetón · Perreo',img:'ev2.jpg'},{dow:6,nombre:'Sábado Revelado',genero:'Techno · House',img:'ev3.jpg'}],
-  planes:['Solo pista','Mesa','Cumpleaños 🎂','Botella']
+  wa:'522222156443',          // 222 215 6443 (del Instagram; confirmar que es WhatsApp)
+  noches:[{dow:4,nombre:'Jueves de cubeta',genero:'6 cervezas $350 · ticket gratis',img:'ev1.jpg'},{dow:5,nombre:'Viernes de profesiones',genero:'Erotic shadow show · live show',img:'ev2.jpg'},{dow:6,nombre:'Noche de demonios',genero:'Halloween · special guest Izak Alvarado',img:'ev3.jpg',fecha:Date.UTC(2026,9,31,12)}],
+  planes:['Entrada general','Mesa VIP','Cumpleaños 🎂','Cubeta']
 };
 const $=s=>document.querySelector(s);
 const wa=t=>'https://wa.me/'+DR.wa+'?text='+encodeURIComponent(t);
@@ -254,7 +257,7 @@ const puebla=()=>new Date(Date.now()-6*3600e3);
 function proxima(dow){const d=puebla();d.setUTCHours(12,0,0,0);const k=(dow-d.getUTCDay()+7)%7;return new Date(d.getTime()+k*864e5);}
 
 /* Agenda en tira de película */
-$('#frames').innerHTML=DR.noches.map((n,i)=>{const f=proxima(n.dow);return '<article class="frame reveal" tabindex="0"><span class="num">'+String(i+1).padStart(2,'0')+'A ▸</span><img src="assets/'+n.img+'" alt="'+n.nombre+'" loading="lazy"><div class="lbl"><small>'+DS[f.getUTCDay()]+' '+f.getUTCDate()+' '+MS[f.getUTCMonth()]+' · 10 PM</small><b>'+n.nombre+'</b><span>'+n.genero+'</span></div></article>';}).join('');
+$('#frames').innerHTML=DR.noches.map((n,i)=>{const f=n.fecha&&n.fecha>Date.now()-864e5?new Date(n.fecha):proxima(n.dow);return '<article class="frame reveal" tabindex="0"><span class="num">'+String(i+1).padStart(2,'0')+'A ▸</span><img src="assets/'+n.img+'" alt="'+n.nombre+'" loading="lazy"><div class="lbl"><small>'+DS[f.getUTCDay()]+' '+f.getUTCDate()+' '+MS[f.getUTCMonth()]+' · open door 10 PM</small><b>'+n.nombre+'</b><span>'+n.genero+'</span></div></article>';}).join('');
 document.querySelectorAll('.frame').forEach(f=>f.addEventListener('click',()=>f.classList.toggle('dev-on')));
 
 /* Reserva */
@@ -268,7 +271,9 @@ document.querySelectorAll('.frame').forEach(f=>f.addEventListener('click',()=>f.
   $('#hoja').onsubmit=e=>{e.preventDefault();const n=DR.noches[st.noche],f=proxima(n.dow);
     window.open(wa('Hola Dark Room 🔴 Quiero apartar:\n• Noche: '+n.nombre+' ('+DN[f.getUTCDay()]+' '+f.getUTCDate()+' '+MS[f.getUTCMonth()]+')\n• Plan: '+st.plan+'\n• Personas: '+$('#pax-o').textContent+'\n• A nombre de: '+$('#nom').value),'_blank','noopener');};
 })();
-$('#wa').href=wa('Hola Dark Room 🔴 Tengo una pregunta');$('#wa').target='_blank';
+$('#wa').href=wa('Hola Dark Room 🔴 Tengo una pregunta');
+/* Aviso +18 (se recuerda en la sesión) */
+(function(){const g=$('#gate');let ok=false;try{ok=sessionStorage.getItem('dr18')==='1'}catch(e){}if(ok){g.hidden=true;return;}document.body.style.overflow='hidden';$('#gate-si').onclick=()=>{g.hidden=true;document.body.style.overflow='';try{sessionStorage.setItem('dr18','1')}catch(e){}};})();$('#wa').target='_blank';
 
 /* Revelado al entrar en pantalla */
 (function(){const d=[...document.querySelectorAll('.dev')];if(!('IntersectionObserver' in window)){d.forEach(x=>x.classList.add('on'));return;}
